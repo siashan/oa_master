@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanlin.oa.mapper.WorkSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.hanlin.oa.model.domain.WorkSummary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="division_id" jdbcType="BIGINT" property="divisionId" />
+    <result column="work_time" jdbcType="VARCHAR" property="workTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, create_time, content, project_id, division_id, work_time
+  </sql>
+</mapper>

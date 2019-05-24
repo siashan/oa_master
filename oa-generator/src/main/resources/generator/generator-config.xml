@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+    <!--<classPathEntry location="D:\\JavaDev\\Maven\\repository\\com\\oracle\\ojdbc6\\11.2.0.1.0\\ojdbc6-11.2.0.1.0.jar"/>-->
+    <classPathEntry
+            location="D:\\JavaDev\\Maven\\repository\\mysql\\mysql-connector-java\\5.1.28\\mysql-connector-java-5.1.28.jar"/>
+    <context id="mysql" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--<plugin type="com.hlyt.forestry.base.generator.plugins.CachePlugin"></plugin>-->
+        <plugin type="org.mybatis.generator.support.plugins.SerializablePlugin"></plugin>
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper,tk.mybatis.mapper.common.MySqlMapper"/>
+        </plugin>
+        <plugin type="com.hanlin.oa.plugins.LombokPlugin"></plugin>
+
+        <!--<plugin type="org.mybatis.generator.support.plugins.BaseMapperGeneratorPlugin"/>-->
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/hanlin_oa"
+                        userId="root" password="123456">
+            <!-- 针对oracle数据库 -->
+            <property name="remarksReporting" value="true"></property>
+            <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"></property>
+        </jdbcConnection>
+        <!--<javaTypeResolver  type="com.hlyt.forestry.base.generator.plugins.JavaTypeResolverForOracle">-->
+        <!--<property name="forceBigDecimals" value="false"/>-->
+        <!--</javaTypeResolver> -->
+        <!--<javaTypeResolver type="org.mybatis.generator.support.internal.types.JavaTypeResolverForOracle">-->
+        <!--<property name="forceBigDecimals" value="false"/>-->
+        <!--</javaTypeResolver>-->
+        <!-- 生成模型的包名和位置-->
+
+        <javaModelGenerator targetPackage="com.hanlin.oa.model.domain" targetProject="oa-generator/src/main/java">
+
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="isMergeable" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="oa-generator/src/main/resources">
+
+            <property name="enableSubPackages" value="true"/>
+            <property name="isMergeable" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成Mapper的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hanlin.oa.mapper"
+                             targetProject="oa-generator/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="isMergeable" value="true"/>
+            <property name="implementationPackage" value="com.hanlin.oa.common.mapper.BaseMapper"/>
+        </javaClientGenerator>
+
+        <!-- 生成service的包名和位置  D:\JavaDev\MYPROJECT\website-->
+        <!--<javaServiceGenerator targetPackage="com.hanlin.oa.service" targetProject="oa-generator/src/main/java">-->
+        <!--<property name="enableSubPackages" value="true"/>-->
+        <!--<property name="isMergeable" value="true"/>-->
+        <!--<property name="implementationPackage" value="com.hanlin.oa.common.service.BaseService"/>-->
+        <!--</javaServiceGenerator>-->
+        <!--<table tableName="member_order"-->
+        <!--domainObjectName="MemberOrder"-->
+        <!--enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--enableSelectByExample="true" selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <!--<table tableName="uac_dict"-->
+               <!--domainObjectName="UacDict"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--</table>-->
+
+        <!--<table tableName="uac_user"-->
+               <!--domainObjectName="UacUser"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="uac_menu"-->
+               <!--domainObjectName="UacMenu"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<columnOverride column="menu_type" javaType="Integer"/>-->
+            <!--<columnOverride column="status" javaType="Integer"/>-->
+            <!--<columnOverride column="is_hide" javaType="Integer"/>-->
+            <!--<columnOverride column="is_leaf" javaType="Integer"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="uac_role"-->
+               <!--domainObjectName="UacRole"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="uac_role_menu"-->
+               <!--domainObjectName="UacRoleMenu"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+        <!--<table tableName="uac_user_role"-->
+               <!--domainObjectName="UacUserRole"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--</table>-->
+
+
+        <table tableName="project"
+               domainObjectName="Project"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="status" javaType="Integer"/>
+        </table>
+        <table tableName="project_division"
+               domainObjectName="ProjectDivision"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="work_summary"
+               domainObjectName="WorkSummary"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

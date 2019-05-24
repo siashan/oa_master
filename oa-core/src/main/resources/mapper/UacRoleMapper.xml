@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanlin.oa.mapper.UacRoleMapper">
+  <resultMap id="BaseResultMap" type="com.hanlin.oa.model.domain.UacRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_code" jdbcType="VARCHAR" property="role_code" />
+    <result column="role_name" jdbcType="VARCHAR" property="role_name" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="creator_id" jdbcType="BIGINT" property="creator_id" />
+    <result column="last_operarot" jdbcType="VARCHAR" property="last_operarot" />
+    <result column="last_operator_id" jdbcType="BIGINT" property="last_operator_id" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="last_update_time" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, role_code, role_name, create_time, status, creator, creator_id, last_operarot, 
+    last_operator_id, last_update_time, version, remark
+  </sql>
+
+  <select id="selectRoleBtnVoList" resultType="com.hanlin.oa.model.VO.RoleBtnVo">
+    SELECT
+    id AS  id,
+    role_name AS  roleName
+    FROM uac_role
+    ORDER  BY  id
+  </select>
+</mapper>

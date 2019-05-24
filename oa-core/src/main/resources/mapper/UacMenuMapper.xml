@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanlin.oa.mapper.UacMenuMapper">
+  <resultMap id="BaseResultMap" type="com.hanlin.oa.model.domain.UacMenu">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menu_name" />
+    <result column="menu_type" jdbcType="TINYINT" property="menu_type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="parent_id" jdbcType="BIGINT" property="parent_id" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="order_by" jdbcType="INTEGER" property="order_by" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="component" jdbcType="VARCHAR" property="component" />
+    <result column="redirect_path" jdbcType="VARCHAR" property="redirect_path" />
+    <result column="is_hide" jdbcType="TINYINT" property="is_hide" />
+    <result column="is_leaf" jdbcType="TINYINT" property="is_leaf" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="creator_id" jdbcType="BIGINT" property="creator_id" />
+    <result column="last_opertor" jdbcType="VARCHAR" property="last_opertor" />
+    <result column="last_operator_id" jdbcType="BIGINT" property="last_operator_id" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="last_update_time" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, menu_name, menu_type, url, icon, permission, parent_id, remark, create_time, 
+    order_by, status, path, component, redirect_path, is_hide, is_leaf, creator, creator_id, 
+    last_opertor, last_operator_id, last_update_time, version
+  </sql>
+
+  <!--</select> -->
+  <select id="getUserFatherMenuList" resultType="com.hanlin.oa.model.domain.UacMenu">
+    select sm.id as id,
+    sm.url as url,
+    sm.menu_name as menuName,
+    sm.icon as icon,
+    sm.parent_id as parentId ,
+    sm.menu_type as MenuType
+    ,sm.path as path
+    ,sm.component as component
+    ,sm.redirect_path as redirectPath
+    ,sm.is_hide as isHide
+    ,sm.is_leaf as isLeaf
+    ,sm.order_by as orderBy
+    from uac_menu sm
+    where id in (
+    select distinct m.id as id
+    from uac_user_role ur
+    LEFT JOIN uac_role_menu rm on ur.role_id = rm.role_id
+    LEFT JOIN uac_menu m on rm.menu_id = m.id
+    where ur.user_id = #{id} and m.status = '1'
+    )
+  </select>
+
+  <select id="findMenuVoListByUserId" parameterType="long" resultType="com.hanlin.oa.model.VO.MenuVo">
+     select sm.id as id,
+        sm.url as url,
+        sm.menu_name as menuName,
+        sm.icon as icon,
+        sm.parent_id as parentId ,
+        sm.menu_type as MenuType
+        ,sm.path as path
+        ,sm.component as component
+        ,sm.redirect_path as redirectPath
+        ,sm.is_hide as isHide
+        ,sm.is_leaf as isLeaf
+        ,sm.order_by as orderBy
+        from uac_menu sm
+        where id in (
+        select distinct m.id as id
+        from uac_user_role ur
+        LEFT JOIN uac_role_menu rm on ur.role_id = rm.role_id
+        LEFT JOIN uac_menu m on rm.menu_id = m.id
+        where ur.user_id = #{id} and m.status = '1'
+        )
+  </select>
+
+
+    <select id="selectMenuTreeVoAll" resultType="com.hanlin.oa.model.VO.MenuTreeVo">
+        select sm.id as id,
+        sm.url as url,
+        sm.menu_name as menuName,
+        sm.icon as icon,
+        sm.parent_id as parentId ,
+        sm.menu_type as MenuType
+        ,sm.path as path
+        ,sm.component as component
+        ,sm.redirect_path as redirectPath
+        ,sm.is_hide as isHide
+        ,sm.is_leaf as isLeaf
+        ,sm.order_by as orderBy
+        from uac_menu sm
+        WHERE  sm.status = '1'
+        ORDER BY  sm.id , sm.order_by
+    </select>
+
+    <select id="selectOwnGrantedAuthoritiesByUserId" parameterType="long" resultMap="BaseResultMap">
+         select sm.id as id,
+            sm.url as url,
+            sm.menu_name as menuName
+            from uac_menu sm
+                LEFT JOIN uac_role_menu rm on rm.menu_id = sm.id
+            LEFT JOIN uac_user_role uur on uur.role_id = rm.role_id
+                WHERE uur.user_id = 62 AND sm.`status` = '1' AND  sm.url IS  NOT  NULL
+    </select>
+</mapper>

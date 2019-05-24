@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanlin.oa.mapper.UacDictMapper">
+  <resultMap id="BaseResultMap" type="com.hanlin.oa.model.domain.UacDict">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="dict_group" jdbcType="VARCHAR" property="dict_group" />
+    <result column="dict_code" jdbcType="BIGINT" property="dict_code" />
+    <result column="dict_name" jdbcType="VARCHAR" property="dict_name" />
+    <result column="dict_desp" jdbcType="VARCHAR" property="dict_desp" />
+    <result column="order_by" jdbcType="INTEGER" property="order_by" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="creator_id" jdbcType="BIGINT" property="creator_id" />
+    <result column="last_operator" jdbcType="VARCHAR" property="last_operator" />
+    <result column="last_operator_id" jdbcType="BIGINT" property="last_operator_id" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="last_update_time" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, dict_group, dict_code, dict_name, dict_desp, order_by, create_time, creator, 
+    creator_id, last_operator, last_operator_id, last_update_time, version
+  </sql>
+
+
+</mapper>
